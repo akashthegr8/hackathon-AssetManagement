@@ -1,9 +1,4 @@
-// Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.services','highcharts-ng'])
 
 .run(function($ionicPlatform) {
@@ -129,7 +124,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
     views: {
       'menuContent': {
         templateUrl: 'templates/files/BranchSel.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -139,7 +134,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
     views: {
       'menuContent': {
         templateUrl: 'templates/files/CityAssets.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })

@@ -272,7 +272,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 
 }]);
 
-/*.controller('ResultsCtrl', function($scope) {
+/*.controller('AppCtrl', function($scope) {
     
   
     $scope.createEquip = function(){
