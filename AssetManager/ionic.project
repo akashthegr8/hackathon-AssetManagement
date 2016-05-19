@@ -1,4 +1,8 @@
 {
   "name": "Klood",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [{
+     "path": "/assetManagement",
+     "proxyUrl": "http://10.52.226.176:8080/assetManagement"
+   }]
 }

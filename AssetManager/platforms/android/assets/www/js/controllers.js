@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout) {
+.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
   $scope.createMovement = function(){
-    
+    $scope.d1ata = "gregeelgele"
     $ionicLoading.show({
           template: "Loading data..."
       })
@@ -74,6 +74,17 @@ angular.module('starter.controllers', [])
   }
   
     $scope.checkAssets = function(){
+        
+          
+        $http.get("http://10.206.154.59:8080/assetManagement/testService")
+            .success(function(data) {
+               console.log("Data " + data);
+            $scope.data11 = data;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+    
     
     $ionicLoading.show({
           template: "Loading data..."
@@ -82,12 +93,15 @@ angular.module('starter.controllers', [])
       $state.go("app.checkAssets")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        
+           
+    
+    
+   
   }
  
  
 })
-
-/////// List Results Child Controller
 .controller('ResultsCtrl', function($scope) {
-/// specific to results page if needed. Everything being handled in parent controller above.
+ 
 });
