@@ -1,15 +1,25 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
   $rootScope.userSettings = {}; // store global user settings
-
+  
   /// Core Search Function
+    $scope.equipment = {
+   /*     'vendor':"",
+        'donor':"",
+        'cost':"",
+        'type': "",
+        'acquisition':""
+   */ }
+     $scope.createEquip = function(){
+    
+        console.log(JSON.stringify($scope.equipment));
+         
+    }
+ 
+     
   $scope.addEquip = function(){
     $ionicLoading.show({
           template: "Loading data..."
@@ -42,20 +52,29 @@ angular.module('starter.controllers', [])
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
   
-  
+ $scope.ctrl = [];
   $scope.createMovement = function(){
-    var ctrl = this;
-
-    ctrl.add = add;
+    
+     
+   
       
-    $http.get("/assetManagement/createMovement")
+  /*  $http.get("/assetManagement/createMovement")
             .success(function(data) {
                console.log("Data " + data);
             $ctrl.data = json.signify(data);
             })
             .error(function(data) {
                 alert("ERROR");
-            });
+            });*/
+      
+      
+      ctrl = [/*{ID:'ID',
+              ProductType:'Product Type',
+              Quantity:'Quantity',
+              Cost:'Cost',
+              Status:'Status'
+             }*/]
+      
       
     $ionicLoading.show({
           template: "Loading data..."
@@ -65,6 +84,21 @@ angular.module('starter.controllers', [])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+  
+  $scope.addData = function(){
+      var dataValue = {
+          ID: $scope.ID,
+          ProductType:$scope.ProductType,
+          Quantity:$scope.Quantity,
+          Cost:$scope.Cost,
+          Status:$scope.Status
+      };
+          
+      $scope.ctrl.push(dataValue);
+          
+          
+      }
+  
   
   
   $scope.ruMovement = function(){
@@ -117,7 +151,14 @@ angular.module('starter.controllers', [])
   }
  
  
-})
-.controller('ResultsCtrl', function($scope) {
- 
+     
 });
+/*.controller('ResultsCtrl', function($scope) {
+    
+  
+    $scope.createEquip = function(){
+    var vr =$scope.equipcost;
+        
+        console.log(vr  + "hoooo")
+    }
+});*/

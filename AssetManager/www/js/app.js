@@ -38,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/addEquip.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/addDonor.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/addSupplier.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -67,7 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/createMovement.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -78,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/ruMovement.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -89,7 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/allMovement.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -100,7 +100,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/files/checkAssets.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -112,7 +112,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
     views: {
       'menuContent': {
         templateUrl: 'templates/results.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })

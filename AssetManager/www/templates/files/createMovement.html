@@ -121,28 +121,33 @@
 
             
                 
-                <ion-content>
-                    <div class="col"><button class="button" ng-click="ctrl.add($index)">Add</button></div>
-                    <div class="col"><button class="button" ng-click="ctrl.delete($index)">Delete</button></div>
-                <div class="row header">
-                  <div class="col"></div>
+                
+
+                    <div class="row header">
+                  <!--<div class="col"></div>-->
                   <div class="col">ID</div>
-                  <div class="col">Product Type</div>
+                  <div class="col">ProductType</div>
                   <div class="col">Quantity</div>
                   <div class="col">Cost</div>
                   <div class="col">Status</div>
                 </div>
-                <div class="row" ng-repeat="data in ctrl.data">
-                  <div class="col">{{data.check}}</div>
-                  <div class="col">{{data.ID}}</div>
-                  <div class="col">{{data.ProductType}}</div>
-                  <div class="col">{{data.Quantity}}</div>
-                  <div class="col">{{data.Cost}}</div>
-                  <div class="col">{{data.Status}}</div>
+                  <div class="row" ng-repeat="dataValue in $scope.ctrl">
+                  <!--<div class="col">{{dataValue.check}}</div>-->
+                  <div class="col">{{dataValue.ID}}</div>
+                  <div class="col">{{dataValue.ProductType}}</div>
+                  <div class="col">{{dataValue.Quantity}}</div>
+                  <div class="col">{{dataValue.Cost}}</div>
+                  <div class="col">{{dataValue.Status}}</div>
                   
                     
                 </div>
-                </ion-content>
+                    
+                    
+                    
+                    <!--<div class="col"><button class="button" ng-click="ctrl.delete($index)">Delete</button></div>-->
+                
+                
+               
             </div>
         </div>
         <ion-list ng-hide="!ASSETMANAGER_RESULTS">
