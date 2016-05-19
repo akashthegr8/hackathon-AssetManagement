@@ -5,7 +5,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
  // $rootScope.userSettings = {}; // store global user settings
-  
+  $scope.imag="";
   /// Core Search Function
     $scope.equipment = {
    /*     'vendor':"",
@@ -15,8 +15,23 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         'acquisition':""
    */ }
      $scope.createEquip = function(){
-    
-        console.log(JSON.stringify($scope.equipment));
+         
+         $scope.qr="";
+    payload = JSON.stringify($scope.equipment);
+        console.log(payload);
+         $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+            $scope.qr= 'data:image/png;base64,' + result.data; 
+             
+            decodedImage= btoa(result.data)
+
+//now, use the decodedData instead of the base64 one
+var blob = new Blob([decodedImage], {type: 'image/png'});
+
+///now it should work properly
+var file = new File([blob], 'imageFileName.png');
+             
+                console.log($scope.qr);
+});
          
     }
  
