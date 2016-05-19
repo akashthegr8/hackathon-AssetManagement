@@ -1,7 +1,11 @@
 angular.module('starter.controllers', ['ionic','ngCordova'])
 
+
+
 .controller('AppCtrl',function($scope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
     
+
+
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
  // $rootScope.userSettings = {}; // store global user settings
@@ -20,22 +24,17 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
          $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+             
+             console.log(result)
             $scope.qr= 'data:image/png;base64,' + result.data; 
              
-            decodedImage= btoa(result.data)
-
-//now, use the decodedData instead of the base64 one
-var blob = new Blob([decodedImage], {type: 'image/png'});
-
-///now it should work properly
-var file = new File([blob], 'imageFileName.png');
-             
+        
                 console.log($scope.qr);
 });
          
     }
  
-     
+    
   $scope.addEquip = function(){
     $ionicLoading.show({
           template: "Loading data..."
@@ -55,6 +54,8 @@ var file = new File([blob], 'imageFileName.png');
       $state.go("app.addDonor")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+     
+     
   }
  
  
@@ -126,17 +127,88 @@ var file = new File([blob], 'imageFileName.png');
       $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  } 
+  $scope.launchNewMove = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      
+      $state.go("app.createMovement")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
-
-  $scope.allMovement = function(){
+  
+  $scope.movFilterSelVal = function(mySelect){
+      console.log("temp" + mySelect);
+  }
+  
+    $scope.ruMovement = function(){
     
     $ionicLoading.show({
           template: "Loading data..."
       })
       console.log("hey")
-      $state.go("app.allMovement")
+      $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+    
+     $scope.BranchSel = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.BranchSel")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+     
+  $scope.mySelect = {
+      'selected': 'Any'
+  }
+  
+  $scope.locSelected= function(city){
+      $scope.myCity={
+          'selected': city
+      }
+      console.log("mycity "+  $scope.myCity.selected)
+      $state.go("app.BranchSel")
+  }
+  
+    $scope.launchcityassets= function(){
+      
+      $state.go("app.CityAssets")
+  }
+    
+  
+ $scope.myCity = {
+      'selected': 'Bangalore'
+  };
+    
+  $scope.allMovement = function(){
+    
+      $state.go("app.allMovement")
+          if($scope.mySelect.selected == 'Any'){              $http.get("/assetManagement/assets/manageMovement")
+            .success(function(allMovList) {
+              console.log("Any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          }else{              $http.get("/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
+            .success(function(allMovList) {
+              console.log("not any " + $scope.mySelect.selected);
+              console.log("not any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          } 
+            
   }
   
     $scope.checkAssets = function(){
@@ -165,6 +237,18 @@ var file = new File([blob], 'imageFileName.png');
     
    
   }
+    
+     $scope.About = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.About")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+ 
  
      
 })
@@ -197,3 +281,4 @@ var file = new File([blob], 'imageFileName.png');
         console.log(vr  + "hoooo")
     }
 });*/
+
