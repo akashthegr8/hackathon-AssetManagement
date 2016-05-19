@@ -104,6 +104,37 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
       }
     }
   })
+  
+    /// child route
+  .state('app.BranchSel', {
+    url: '/BranchSel',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/BranchSel.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+  
+    .state('app.CityAssets', {
+    url: '/CityAssets',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/CityAssets.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+  
+    .state('app.About', {
+    url: '/About',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/About.html',
+        controller: 'AppCtrl'
+      }
+    }
+  })
  
 
   /// child route

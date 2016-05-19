@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout) {
+.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout,$http) {
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
@@ -29,6 +29,8 @@ angular.module('starter.controllers', [])
       $state.go("app.addDonor")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+     
+     
   }
  
  
@@ -60,17 +62,88 @@ angular.module('starter.controllers', [])
       $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  } 
+  $scope.launchNewMove = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      
+      $state.go("app.createMovement")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
-
-  $scope.allMovement = function(){
+  
+  $scope.movFilterSelVal = function(mySelect){
+      console.log("temp" + mySelect);
+  }
+  
+    $scope.ruMovement = function(){
     
     $ionicLoading.show({
           template: "Loading data..."
       })
       console.log("hey")
-      $state.go("app.allMovement")
+      $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+    
+     $scope.BranchSel = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.BranchSel")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+     
+  $scope.mySelect = {
+      'selected': 'Any'
+  }
+  
+  $scope.locSelected= function(city){
+      $scope.myCity={
+          'selected': city
+      }
+      console.log("mycity "+  $scope.myCity.selected)
+      $state.go("app.BranchSel")
+  }
+  
+    $scope.launchcityassets= function(){
+      
+      $state.go("app.CityAssets")
+  }
+    
+  
+ $scope.myCity = {
+      'selected': 'Bangalore'
+  };
+    
+  $scope.allMovement = function(){
+    
+      $state.go("app.allMovement")
+          if($scope.mySelect.selected == 'Any'){              $http.get("/assetManagement/assets/manageMovement")
+            .success(function(allMovList) {
+              console.log("Any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          }else{              $http.get("/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
+            .success(function(allMovList) {
+              console.log("not any " + $scope.mySelect.selected);
+              console.log("not any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          } 
+            
   }
   
     $scope.checkAssets = function(){
@@ -83,6 +156,18 @@ angular.module('starter.controllers', [])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+    
+     $scope.About = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.About")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+ 
  
  
 })
