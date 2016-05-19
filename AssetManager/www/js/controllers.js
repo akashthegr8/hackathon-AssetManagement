@@ -1,123 +1,173 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('AppCtrl', function ($scope, $assetmanagerservice, $state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
+        // listen for the $ionicView.enter event:
+        //$scope.$on('$ionicView.enter', function(e) {
+        //});
 
-  ////////// SEARCH CONTROLLER BELOW ////////////
-  $scope.mySearch = {}; // create empty object for search params
-  $rootScope.userSettings = {}; // store global user settings
-
-  /// Core Search Function
-  $scope.addEquip = function(){
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.addEquip")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-  }
+        ////////// SEARCH CONTROLLER BELOW ////////////
+        $scope.mySearch = {}; // create empty object for search params
+        $rootScope.userSettings = {}; // store global user settings
 
 
- $scope.addDonor = function(){
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.addDonor")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-  }
- 
- 
-  $scope.addSupplier = function(){
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.addSupplier")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-  }
-  
-  
-  $scope.createMovement = function(){
-    var ctrl = this;
 
-    ctrl.add = add;
-      
-    $http.get("/assetManagement/createMovement")
-            .success(function(data) {
-               console.log("Data " + data);
-            $ctrl.data = json.signify(data);
+
+
+        /// Core Search Function
+        $scope.addEquip = function () {
+            $ionicLoading.show({
+                template: "Loading data..."
             })
-            .error(function(data) {
-                alert("ERROR");
-            });
-      
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.createMovement")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-  }
-  
-  
-  $scope.ruMovement = function(){
-    
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.ruMovement")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-  }
+            console.log("hey")
+            $state.go("app.addEquip")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        }
 
-  $scope.allMovement = function(){
-    
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.allMovement")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-  }
-  
-    $scope.checkAssets = function(){
-        
-          
-        $http.get("/assetManagement/testService")
-            .success(function(data) {
-               console.log("Data " + data);
-            $scope.data11 = data;
+
+        $scope.addDonor = function () {
+            $ionicLoading.show({
+                template: "Loading data..."
             })
-            .error(function(data) {
-                alert("ERROR");
-            });
-    
-    
-    $ionicLoading.show({
-          template: "Loading data..."
-      })
-      console.log("hey")
-      $state.go("app.checkAssets")
-       $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
-        
-           
-    
-    
-   
-  }
- 
- 
-})
-.controller('ResultsCtrl', function($scope) {
- 
-});
+            console.log("hey")
+            $state.go("app.addDonor")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        }
+
+
+        $scope.addSupplier = function () {
+            $ionicLoading.show({
+                template: "Loading data..."
+            })
+            console.log("hey")
+            $state.go("app.addSupplier")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        }
+
+
+        $scope.createMovement = function () {
+            var ctrl = this;
+
+            ctrl.add = add;
+
+            $http.get("/assetManagement/createMovement")
+                .success(function (data) {
+                    console.log("Data " + data);
+                    $ctrl.data = json.signify(data);
+                })
+                .error(function (data) {
+                    alert("ERROR");
+                });
+
+            $ionicLoading.show({
+                template: "Loading data..."
+            })
+            console.log("hey")
+            $state.go("app.createMovement")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        }
+
+
+        $scope.ruMovement = function () {
+
+            $ionicLoading.show({
+                template: "Loading data..."
+            })
+            console.log("hey")
+            $state.go("app.ruMovement")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        }
+
+        $scope.allMovement = function () {
+
+            $ionicLoading.show({
+                template: "Loading data..."
+            })
+            console.log("hey")
+            $state.go("app.allMovement")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+        }
+
+        $scope.checkAssets = function () {
+
+
+            $http.get("/assetManagement/testService")
+                .success(function (data) {
+                    console.log("Data " + data);
+                    $scope.data11 = data;
+                })
+                .error(function (data) {
+                    alert("ERROR");
+                });
+
+
+            $ionicLoading.show({
+                template: "Loading data..."
+            })
+            console.log("hey")
+            $state.go("app.checkAssets")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu  
+        }
+        $scope.listSupplier = function () {
+
+            /*$http.get("/")
+              .success(function(list) {
+              $scope.supplierList = list;
+              })
+              .error(function(data) {
+                  alert("ERROR");
+              });*/
+
+            $scope.supplierList = [{
+                    name: 'Akash',
+                    id: 'I329624'
+                },
+                {
+                    name: 'Abhisheks',
+                    id: 'I329876'
+                }];
+
+            /* $ionicLoading.show({
+                   template: "Loading data..."
+               })*/
+            console.log("hey")
+            $state.go("app.supplier")
+                //       $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+
+
+        }
+        $scope.listDonors = function () {
+
+
+            $http.get("http://10.207.112.134:8080/assetManagement/assets/manageDonor")
+                .success(function (list) {
+                    $scope.donorList = list;
+                })
+                .error(function (data) {
+                    alert("ERROR");
+                });
+
+
+            $ionicLoading.show({
+                template: "Loading data..."
+            })
+            console.log("hey")
+            $state.go("app.donorList")
+            $ionicLoading.hide();
+            $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu  
+        }
+
+
+
+
+    })
+    .controller('ResultsCtrl', function ($scope) {
+
+    });

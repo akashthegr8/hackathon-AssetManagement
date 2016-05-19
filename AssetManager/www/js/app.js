@@ -42,6 +42,24 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','hi
       }
     }
   })
+  .state('app.supplier', {
+    url: '/supplier',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/supplier.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+  .state('app.donorList', {
+    url: '/donorList',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/donorList.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
   .state('app.addDonor', {
     url: '/addDonor',
     views: {
