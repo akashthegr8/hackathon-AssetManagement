@@ -41,8 +41,22 @@ angular.module('starter.controllers', [])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+  
+  
   $scope.createMovement = function(){
-    $scope.d1ata = "gregeelgele"
+    var ctrl = this;
+
+    ctrl.add = add;
+      
+    $http.get("/assetManagement/createMovement")
+            .success(function(data) {
+               console.log("Data " + data);
+            $ctrl.data = json.signify(data);
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+      
     $ionicLoading.show({
           template: "Loading data..."
       })
@@ -51,6 +65,8 @@ angular.module('starter.controllers', [])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+  
+  
   $scope.ruMovement = function(){
     
     $ionicLoading.show({
