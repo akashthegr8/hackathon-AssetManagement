@@ -150,29 +150,28 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     
    
   }
-   var vm = this;
-
-    $scope.scan = function(){
-        console.log("sdgsgfsa")
-        $ionicPlatform.ready(function() {
-            $cordovaBarcodeScanner
-            .scan()
-            .then(function(result) {
-                // Success! Barcode data is here
-                vm.scanResults = "We got a barcoden" +
-                "Result: " + result.text + "n" +
-                "Format: " + result.format + "n" +
-                "Cancelled: " + result.cancelled;
-            }, function(error) {
-                // An error occurred
-                vm.scanResults = 'Error: ' + error;
-            });
-        });
-    };
-    
-    vm.scanResults = '';
+ 
      
-});
+})
+
+
+
+
+.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$cordovaBarcodeScanner,$ionicPlatform) {
+
+  $scope.scan = function(){
+      
+      console.log("safdsg")
+    $ionicPlatform.ready(function() {
+      $cordovaBarcodeScanner.scan().then(function(barcodeData) {
+          alert(JSON.stringify(barcodeData));
+      }, function(error) {
+          alert(JSON.stringify(error));
+      });
+    });
+  }
+
+}]);
 
 /*.controller('ResultsCtrl', function($scope) {
     
