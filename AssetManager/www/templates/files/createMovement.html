@@ -9,47 +9,57 @@
                 <h2>New Asset Movement</h2>
               
             </div>
+            
+            
+            
             <div class="item item-body">
-                  <label class = "item item-input item-select">
-                    <span class="input-label">Asset Origin Location/Donor/Supplier</span>
-	                <select>
-                      <option>Bangalore-North</option>
-                      <option selected>Bangalore-East</option>
-                      <option>Bangalore-South</option>
-                      <option>Hyderabad-West</option>
-                      <option>Delhi-Old</option>
-                      <option>Delhi-New</option>
-                      <option>Chennai</option>
-                      <option>SAP</option>
-                      <option>Samajik Suvidha Sangam</option>
-                      <option>ONGC</option>
-                      <option>Nehru Yuva Kendra</option>
-                      <option>Lenovo</option>
-                      <option>HP</option>
-                      <option>Panasonic</option>
-                      <option>Dell</option>
-                  </select>
-                </label>
+                
+                <div>
+                <label class = "item item-input item-select">
+                    <span class="input-label">Asset Origin Location : {{originlocation}}</span>
+	            </label>
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">Origin Location Address</span>
-                    <input class="titleSearch" type="text" >
+                    <span class="input-label">Origin Location Address : {{originaddress}}</span>
+                  
                    <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
                 </label>
-                
+                <!--
                 
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Origin Location Address (Line 2)</span>
-                    <input class="titleSearch" type="text" >
-                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
-                </label>
+                    <input class="titleSearch" type="text" />
+                   
+                </label>-->
                 
                 
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">PIN Code</span>
-                    <input class="titleSearch" type="number" >
+                    <span class="input-label">PIN Code : {{pincode}}</span>
+                    
                    <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
                 </label>
+                </div>
                 
+<!--
+                <button class="button icon icon-left ion-checkmark-round button-positive" ng-controller="HomeCtrl" ng-click="scan();">
+                   Read QR-Code
+                </button>
+                
+-->
+<div class="card" >
+    <div class="item">
+        <button class="button button-block button-positive" ng-click="scan()">
+            <i class="icon ion-qr-scanner"></i>
+            Scan Now
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="item item-divider">Scan Results</div>
+        <div class="item item-text-wrap">{{vm.scanResults}}
+    </div>
+</div>
+                
+                <!--
                 <label class = "item item-input item-select">
                     <span class="input-label">Movement Status</span>
 	                <select>
@@ -57,7 +67,7 @@
                       <option selected>In Transit</option>
                       <option>Received</option>
                   </select>
-                </label>
+                </label>-->
                 
                 
                 <label class = "item item-input item-select">

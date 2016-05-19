@@ -1,15 +1,26 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic','ngCordova'])
 
-.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
+.controller('AppCtrl',function($scope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
+    
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
-  $rootScope.userSettings = {}; // store global user settings
-
+ // $rootScope.userSettings = {}; // store global user settings
+  
   /// Core Search Function
+    $scope.equipment = {
+   /*     'vendor':"",
+        'donor':"",
+        'cost':"",
+        'type': "",
+        'acquisition':""
+   */ }
+     $scope.createEquip = function(){
+    
+        console.log(JSON.stringify($scope.equipment));
+         
+    }
+ 
+     
   $scope.addEquip = function(){
     $ionicLoading.show({
           template: "Loading data..."
@@ -41,8 +52,31 @@ angular.module('starter.controllers', [])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+  
+ $scope.ctrl = [];
   $scope.createMovement = function(){
-    $scope.d1ata = "gregeelgele"
+    
+     
+   
+      
+  /*  $http.get("/assetManagement/createMovement")
+            .success(function(data) {
+               console.log("Data " + data);
+            $ctrl.data = json.signify(data);
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });*/
+      
+      
+      ctrl = [/*{ID:'ID',
+              ProductType:'Product Type',
+              Quantity:'Quantity',
+              Cost:'Cost',
+              Status:'Status'
+             }*/]
+      
+      
     $ionicLoading.show({
           template: "Loading data..."
       })
@@ -51,6 +85,23 @@ angular.module('starter.controllers', [])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+  
+  $scope.addData = function(){
+      var dataValue = {
+          ID: $scope.ID,
+          ProductType:$scope.ProductType,
+          Quantity:$scope.Quantity,
+          Cost:$scope.Cost,
+          Status:$scope.Status
+      };
+          
+      $scope.ctrl.push(dataValue);
+          
+          
+      }
+  
+  
+  
   $scope.ruMovement = function(){
     
     $ionicLoading.show({
@@ -76,7 +127,7 @@ angular.module('starter.controllers', [])
     $scope.checkAssets = function(){
         
           
-        $http.get("http://10.206.154.59:8080/assetManagement/testService")
+        $http.get("/assetManagement/testService")
             .success(function(data) {
                console.log("Data " + data);
             $scope.data11 = data;
@@ -99,9 +150,36 @@ angular.module('starter.controllers', [])
     
    
   }
- 
- 
-})
-.controller('ResultsCtrl', function($scope) {
- 
+   var vm = this;
+
+    $scope.scan = function(){
+        console.log("sdgsgfsa")
+        $ionicPlatform.ready(function() {
+            $cordovaBarcodeScanner
+            .scan()
+            .then(function(result) {
+                // Success! Barcode data is here
+                vm.scanResults = "We got a barcoden" +
+                "Result: " + result.text + "n" +
+                "Format: " + result.format + "n" +
+                "Cancelled: " + result.cancelled;
+            }, function(error) {
+                // An error occurred
+                vm.scanResults = 'Error: ' + error;
+            });
+        });
+    };
+    
+    vm.scanResults = '';
+     
 });
+
+/*.controller('ResultsCtrl', function($scope) {
+    
+  
+    $scope.createEquip = function(){
+    var vr =$scope.equipcost;
+        
+        console.log(vr  + "hoooo")
+    }
+});*/

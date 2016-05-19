@@ -1,9 +1,10 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic','ngCordova'])
 
-.controller('AppCtrl', function($scope,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
+.controller('AppCtrl',function($scope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
+    
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
-  $rootScope.userSettings = {}; // store global user settings
+ // $rootScope.userSettings = {}; // store global user settings
   
   /// Core Search Function
     $scope.equipment = {
@@ -149,10 +150,30 @@ angular.module('starter.controllers', [])
     
    
   }
- 
- 
+   var vm = this;
+
+    $scope.scan = function(){
+        console.log("sdgsgfsa")
+        $ionicPlatform.ready(function() {
+            $cordovaBarcodeScanner
+            .scan()
+            .then(function(result) {
+                // Success! Barcode data is here
+                vm.scanResults = "We got a barcoden" +
+                "Result: " + result.text + "n" +
+                "Format: " + result.format + "n" +
+                "Cancelled: " + result.cancelled;
+            }, function(error) {
+                // An error occurred
+                vm.scanResults = 'Error: ' + error;
+            });
+        });
+    };
+    
+    vm.scanResults = '';
      
 });
+
 /*.controller('ResultsCtrl', function($scope) {
     
   
