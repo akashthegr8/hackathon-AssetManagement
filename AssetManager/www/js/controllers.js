@@ -15,8 +15,11 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         'acquisition':""
    */ }
      $scope.createEquip = function(){
-    
-        console.log(JSON.stringify($scope.equipment));
+    payload = JSON.stringify($scope.equipment);
+        console.log(payload);
+         $http.post('/assetmanagement/', payload).then(function(result){
+    return result.data;
+});
          
     }
  
