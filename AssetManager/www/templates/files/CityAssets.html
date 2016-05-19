@@ -1,0 +1,27 @@
+<ion-view view-title="">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-hide="!ASSETMANAGER_RESULTS" ng-click="clearSearch()">Clear</button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
+            <div class="item item-avatar">
+                <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALIAAAAJGY4NzI5NDhiLTQzM2YtNDE4OS04MDdiLTg1N2I5Y2U1ZTMyNQ.jpg">
+                <h2Add Assets</h2>
+              
+            </div>
+            <div class="item item-body">          
+
+<div id="see_report" style="width: 280px; height: 350px;">
+</div>
+            
+            </div>
+        </div>
+        <ion-list ng-hide="!ASSETMANAGER_RESULTS">
+            <a class="item item-thumbnail-left" ng-repeat="item in OMDB_RESULTS" href="#/app/details/{{item.imdbID}}">
+                <img ng-src="{{item.Poster}}">
+                <h2>{{item.Title}}</h2>
+                <p>{{item.Year}}</p>
+            </a>
+        </ion-list>
+    </ion-content>
+</ion-view>

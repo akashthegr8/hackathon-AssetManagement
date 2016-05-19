@@ -6,28 +6,60 @@
         <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
             <div class="item item-avatar">
                 <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALIAAAAJGY4NzI5NDhiLTQzM2YtNDE4OS04MDdiLTg1N2I5Y2U1ZTMyNQ.jpg">
-                <h2>Akash Srivastava</h2>
-                <p>
-                    <a href="mailto:akash.srivastava01@sap.com.com" class="subdued"><i class="ion-email"></i></a>
-                    <a href="http://www.facebook.com/akashthegr8" class="subdued" >@akashthegr8</a>
-                </p>
+                <h2Add Assets</h2>
+              
             </div>
             <div class="item item-body">
-                <p><b>Service/Factory: </b></p>
-                <p>There is a single service that handles the connection to OMDB and the DOM. Uses promises ($q) to handle Asynchronous calls to API.</p>
-                <p><b>Controllers:</b></p>
-                <p>These are pretty straight forward and handle most of the logic. There is a Highcharts Config setup in the DetailsCtrl that works with highcharts-ng and the directive in the DOM. </p>
-                <p><b>App.js:</b></p>
-                <p>One parent route with child routes for individual sections etc. </p>
-                <p><b>Protractor.js:</b></p>
-                <p>For unit testing and e2e testing</p>
+               <label class="item item-input item-stacked-label">
+                    <span class="input-label">Location</span>
+                    <span class="input-label"></span>
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                <label class = "item item-input item-select">
+                    <span class="input-label defineSizeClass">Movement Type</span>
+	                <select id="select_movement_type defineSizeClass">
+                      <option selected>All</option>
+                      <option>Internal</option>
+                      <option>Donated</option>
+                      <option>purchased</option>
+                  </select>
+                </label>
+                
+                <ul class="tab">
+  <li><a href="#/app/checkAssets" class="tablinks defineSizeClass button_style_class" ng-click="openCity(event, 'asset_details')">Details</a></li>
+  <li><a href="#/app/checkAssets" class="tablinks defineSizeClass button_style_class" ng-click="openCity(event, 'see_report')">Report</a></li>
+</ul>
+
+<div id="asset_details" class="tabcontent">
+  <table style="width:100%">
+  <tr>
+    <th>Asset type</th>
+    <th>Quantity</th>  
+    <th>Recieved by</th>
+  </tr>
+  <tr>
+    <td>laptop</td>
+    <td>36</td>  
+    <td>Donated</td>
+  </tr>
+</table>
+</div>
+
+<!--<div id="see_report" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
+</div>-->
+<div id="see_report" style="width: 280px; height: 350px;">
+</div>
+            
             </div>
         </div>
         <ion-list ng-hide="!ASSETMANAGER_RESULTS">
             <a class="item item-thumbnail-left" ng-repeat="item in OMDB_RESULTS" href="#/app/details/{{item.imdbID}}">
                 <img ng-src="{{item.Poster}}">
                 <h2>{{item.Title}}</h2>
-                <h1>{{scope.data}}</h1>
                 <p>{{item.Year}}</p>
             </a>
         </ion-list>
