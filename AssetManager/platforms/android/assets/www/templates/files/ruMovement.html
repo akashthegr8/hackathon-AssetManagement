@@ -6,27 +6,150 @@
         <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
             <div class="item item-avatar">
                 <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALIAAAAJGY4NzI5NDhiLTQzM2YtNDE4OS04MDdiLTg1N2I5Y2U1ZTMyNQ.jpg">
-                <h2>Akash Srivastava</h2>
-                <p>
-                    <a href="mailto:akash.srivastava01@sap.com.com" class="subdued"><i class="ion-email"></i></a>
-                    <a href="http://www.facebook.com/akashthegr8" class="subdued" >@akashthegr8</a>
-                </p>
+                <h2>New Asset Movement</h2>
+              
             </div>
             <div class="item item-body">
-                <p><b>Service/Factory: </b></p>
-                <p>There is a single service that handles the connection to OMDB and the DOM. Uses promises ($q) to handle Asynchronous calls to API.</p>
-                <p><b>Controllers:</b></p>
-                <p>These are pretty straight forward and handle most of the logic. There is a Highcharts Config setup in the DetailsCtrl that works with highcharts-ng and the directive in the DOM. </p>
-                <p><b>App.js:</b></p>
-                <p>One parent route with child routes for individual sections etc. </p>
-                <p><b>Protractor.js:</b></p>
-                <p>For unit testing and e2e testing</p>
+                  <label class = "item item-input item-select">
+                    <span class="input-label">Asset Origin Location/Donor/Supplier</span>
+	                <select>
+                      <option>Bangalore-North</option>
+                      <option selected>Bangalore-East</option>
+                      <option>Bangalore-South</option>
+                      <option>Hyderabad-West</option>
+                      <option>Delhi-Old</option>
+                      <option>Delhi-New</option>
+                      <option>Chennai</option>
+                      <option>SAP</option>
+                      <option>Samajik Suvidha Sangam</option>
+                      <option>ONGC</option>
+                      <option>Nehru Yuva Kendra</option>
+                      <option>Lenovo</option>
+                      <option>HP</option>
+                      <option>Panasonic</option>
+                      <option>Dell</option>
+                  </select>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Origin Location Address</span>
+                    <input class="titleSearch" type="text" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Origin Location Address (Line 2)</span>
+                    <input class="titleSearch" type="text" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">PIN Code</span>
+                    <input class="titleSearch" type="number" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                <label class = "item item-input item-select">
+                    <span class="input-label">Movement Status</span>
+	                <select>
+                      <option>Shipped</option>
+                      <option selected>In Transit</option>
+                      <option>Received</option>
+                  </select>
+                </label>
+                
+                
+                <label class = "item item-input item-select">
+                    <span class="input-label">Asset Destination Location</span>
+	                <select>
+                      <option>Bangalore-North</option>
+                      <option selected>Bangalore-East</option>
+                      <option>Bangalore-South</option>
+                      <option>Hyderabad-West</option>
+                      <option>Delhi-Old</option>
+                      <option>Delhi-New</option>
+                      <option>Chennai</option>
+                    </select>
+                </label>
+                
+                 <label class="item item-input item-stacked-label">
+                    <span class="input-label">Destination Location Address</span>
+                    <input class="titleSearch" type="text" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Destination Location Address (Line 2)</span>
+                    <input class="titleSearch" type="text" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">PIN Code</span>
+                    <input class="titleSearch" type="number" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Movement Date</span>
+                    <input class="titleSearch" type="date" >
+                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
+                </label>
+                
+                
+                <label class = "item item-input item-select">
+                    <span class="input-label">Movement Type</span>
+	                <select>
+                      <option>Internal</option>
+                      <option selected>Purchased</option>
+                      <option>Donated</option>
+                  </select>
+                </label>
+                
+                <button class="button icon icon-left ion-checkmark-round button-positive">
+                   Save
+                </button>
+                
+                <button class="button icon icon-left ion-close-round button-stable">
+                   Reset
+                </button>
+
+                <ion-content>
+                    <div class="col"><button class="button" ng-click="ctrl.add($index)">Add</button></div>
+                    <div class="col"><button class="button" ng-click="ctrl.delete($index)">Delete</button></div>
+                <div class="row header">
+                  <div class="col"></div>
+                  <div class="col">ID</div>
+                  <div class="col">Product Type</div>
+                  <div class="col">Quantity</div>
+                  <div class="col">Cost</div>
+                  <div class="col">Status</div>
+                </div>
+                <div class="row" ng-repeat="data in ctrl.data">
+                  <div class="col">{{data.check}}</div>
+                  <div class="col">{{data.ID}}</div>
+                  <div class="col">{{data.ProductType}}</div>
+                  <div class="col">{{data.Quantity}}</div>
+                  <div class="col">{{data.Cost}}</div>
+                  <div class="col">{{data.Status}}</div>
+                  
+                    
+                </div>
+                </ion-content>
+                
+                
             </div>
         </div>
         <ion-list ng-hide="!ASSETMANAGER_RESULTS">
             <a class="item item-thumbnail-left" ng-repeat="item in OMDB_RESULTS" href="#/app/details/{{item.imdbID}}">
                 <img ng-src="{{item.Poster}}">
                 <h2>{{item.Title}}</h2>
+                {{data11}}
                 <p>{{item.Year}}</p>
             </a>
         </ion-list>

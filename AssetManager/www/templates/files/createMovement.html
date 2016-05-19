@@ -9,47 +9,47 @@
                 <h2>New Asset Movement</h2>
               
             </div>
+            
+            
+            
             <div class="item item-body">
-                  <label class = "item item-input item-select">
-                    <span class="input-label">Asset Origin Location/Donor/Supplier</span>
-	                <select>
-                      <option>Bangalore-North</option>
-                      <option selected>Bangalore-East</option>
-                      <option>Bangalore-South</option>
-                      <option>Hyderabad-West</option>
-                      <option>Delhi-Old</option>
-                      <option>Delhi-New</option>
-                      <option>Chennai</option>
-                      <option>SAP</option>
-                      <option>Samajik Suvidha Sangam</option>
-                      <option>ONGC</option>
-                      <option>Nehru Yuva Kendra</option>
-                      <option>Lenovo</option>
-                      <option>HP</option>
-                      <option>Panasonic</option>
-                      <option>Dell</option>
-                  </select>
-                </label>
+                
+                <div>
+                <label class = "item item-input item-select">
+                    <span class="input-label">Asset Origin Location : {{originlocation}}</span>
+	            </label>
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">Origin Location Address</span>
-                    <input class="titleSearch" type="text" >
+                    <span class="input-label">Origin Location Address : {{originaddress}}</span>
+                  
                    <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
                 </label>
-                
+                <!--
                 
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Origin Location Address (Line 2)</span>
-                    <input class="titleSearch" type="text" >
-                   <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
-                </label>
+                    <input class="titleSearch" type="text" />
+                   
+                </label>-->
                 
                 
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">PIN Code</span>
-                    <input class="titleSearch" type="number" >
+                    <span class="input-label">PIN Code : {{pincode}}</span>
+                    
                    <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
                 </label>
+                </div>
                 
+<!--
+                <button class="button icon icon-left ion-checkmark-round button-positive" ng-controller="HomeCtrl" ng-click="scan();">
+                   Read QR-Code
+                </button>
+                
+-->
+	<div style='background:red;display:table;margin:40% auto;padding:10px;color:white' ng-controller='HomeCtrl' ng-click='scan()'>
+        Click Here to Scan
+      </div>
+
+                <!--
                 <label class = "item item-input item-select">
                     <span class="input-label">Movement Status</span>
 	                <select>
@@ -57,7 +57,7 @@
                       <option selected>In Transit</option>
                       <option>Received</option>
                   </select>
-                </label>
+                </label>-->
                 
                 
                 <label class = "item item-input item-select">
@@ -121,28 +121,33 @@
 
             
                 
-                <ion-content>
-                    <div class="col"><button class="button" ng-click="ctrl.add($index)">Add</button></div>
-                    <div class="col"><button class="button" ng-click="ctrl.delete($index)">Delete</button></div>
-                <div class="row header">
-                  <div class="col"></div>
+                
+
+                    <div class="row header">
+                  <!--<div class="col"></div>-->
                   <div class="col">ID</div>
-                  <div class="col">Product Type</div>
+                  <div class="col">ProductType</div>
                   <div class="col">Quantity</div>
                   <div class="col">Cost</div>
                   <div class="col">Status</div>
                 </div>
-                <div class="row" ng-repeat="data in ctrl.data">
-                  <div class="col">{{data.check}}</div>
-                  <div class="col">{{data.ID}}</div>
-                  <div class="col">{{data.ProductType}}</div>
-                  <div class="col">{{data.Quantity}}</div>
-                  <div class="col">{{data.Cost}}</div>
-                  <div class="col">{{data.Status}}</div>
+                  <div class="row" ng-repeat="dataValue in $scope.ctrl">
+                  <!--<div class="col">{{dataValue.check}}</div>-->
+                  <div class="col">{{dataValue.ID}}</div>
+                  <div class="col">{{dataValue.ProductType}}</div>
+                  <div class="col">{{dataValue.Quantity}}</div>
+                  <div class="col">{{dataValue.Cost}}</div>
+                  <div class="col">{{dataValue.Status}}</div>
                   
                     
                 </div>
-                </ion-content>
+                    
+                    
+                    
+                    <!--<div class="col"><button class="button" ng-click="ctrl.delete($index)">Delete</button></div>-->
+                
+                
+               
             </div>
         </div>
         <ion-list ng-hide="!ASSETMANAGER_RESULTS">
