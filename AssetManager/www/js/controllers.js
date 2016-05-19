@@ -24,6 +24,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
          $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+             
+             console.log(result)
             $scope.qr= 'data:image/png;base64,' + result.data; 
              
         
