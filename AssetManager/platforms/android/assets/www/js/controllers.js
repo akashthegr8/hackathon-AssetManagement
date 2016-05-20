@@ -20,12 +20,6 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
    */ }
      $scope.createEquip = function(){
          
-        /* $http.get("/assetManagement/assets/manageEquipment/").success(function(result){
-            console.log("raw" + result.data)
-             abc = btoa(result.data); 
-             console.log("btoa" + abc);
-         });*/
-         
          $scope.qr="";
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
@@ -68,6 +62,15 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
  
     
   $scope.addEquip = function(){
+      
+      
+      
+      
+      
+      
+    
+      
+      
     $ionicLoading.show({
           template: "Loading data..."
       })
@@ -222,7 +225,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   $scope.allMovement = function(){
     
       $state.go("app.allMovement")
-          if($scope.mySelect.selected == 'Any'){              $http.get("/assetManagement/assets/manageMovement")
+          if($scope.mySelect.selected == 'Any'){              $http.get("http://10.207.112.134:8080/assetManagement/assets/manageMovement")
             .success(function(allMovList) {
               console.log("Any " + allMovList);
             $scope.data11 = allMovList;
@@ -230,7 +233,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
             .error(function(data) {
                 alert("ERROR");
             });
-          }else{              $http.get("/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
+          }else{              $http.get("http://10.207.112.134:8080/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
             .success(function(allMovList) {
               console.log("not any " + $scope.mySelect.selected);
               console.log("not any " + allMovList);
@@ -282,22 +285,49 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   }
  
  
+      $rootScope.$on("CallParentMethod", function(barcodeData){
+           $scope.getCall(barcodeData);
+        });
+
+        
+        
+        
+     $scope.getCall = function(barcodeData){
+         $http.get("http://10.207.112.134:8080/assetManagement/assets/manageEquipment/details/" + barcodeData).success(function(result){
+              var alertPopup = $ionicPopup.alert({
+                 title: 'BarcodeData',
+                 template: result[0].product_type
+               });
+           
+              
+          }); 
+         
+     }
      
 })
 
-
-
-
-.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$cordovaBarcodeScanner,$ionicPlatform) {
+      
+      /*
+  */
+    
+          
+  .controller('HomeCtrl', ['$scope', '$rootScope', '$cordovaBarcodeScanner','$ionicPlatform',function($scope,$rootScope, $cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.scan = function(){
       
-      console.log("safdsg")
+   
+      
+      
     $ionicPlatform.ready(function() {
       $cordovaBarcodeScanner.scan().then(function(barcodeData) {
-          $http.get("/assetManagement/assets/manageEquipment/"+barcode.text).success(function(result){
-              console.log(result.data)
-          });
+          
+          alert(JSON.stringify(barcodeData));
+          alert(barcodeData.text);
+           $rootScope.$emit("CallParentMethod", JSON.stringify(barcodeData).data);
+          
+           
+           
+           
       }, function(error) {
           alert(JSON.stringify(error));
       });
@@ -305,14 +335,3 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   }
 
 }]);
-
-/*.controller('AppCtrl', function($scope) {
-    
-  
-    $scope.createEquip = function(){
-    var vr =$scope.equipcost;
-        
-        console.log(vr  + "hoooo")
-    }
-});*/
-
