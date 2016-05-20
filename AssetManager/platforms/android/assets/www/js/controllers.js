@@ -104,6 +104,15 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
   
+<<<<<<< HEAD
+  
+  $scope.createMovement = function(){
+    var ctrl = this;
+
+    ctrl.add = add;
+      
+    $http.get("/assetManagement/createMovement")
+=======
  $scope.ctrl = [];
   $scope.createMovement = function(){
     
@@ -111,12 +120,16 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
    
       
   /*  $http.get("/assetManagement/createMovement")
+>>>>>>> fb223c7af59a9b87675e84098a6b2585c4e33e28
             .success(function(data) {
                console.log("Data " + data);
             $ctrl.data = json.signify(data);
             })
             .error(function(data) {
                 alert("ERROR");
+<<<<<<< HEAD
+            });
+=======
             });*/
       
       
@@ -127,6 +140,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
               Status:'Status'
              }*/]
       
+>>>>>>> fb223c7af59a9b87675e84098a6b2585c4e33e28
       
     $ionicLoading.show({
           template: "Loading data..."
@@ -137,6 +151,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
   
+<<<<<<< HEAD
+=======
   $scope.addData = function(){
       var dataValue = {
           ID: $scope.ID,
@@ -152,6 +168,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       }
   
   
+>>>>>>> fb223c7af59a9b87675e84098a6b2585c4e33e28
   
   $scope.ruMovement = function(){
     
@@ -246,6 +263,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
             
   }
   
+  
     $scope.checkAssets = function(){
         
           
@@ -265,11 +283,80 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       console.log("hey")
       $state.go("app.checkAssets")
        $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu 
+  }
+ // A.Kumar
+    $scope.openCity = function (evt, selectedTab) {           
+       
         
-           
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tabcontent.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    
+        
+    if(selectedTab == "see_report"){
+        document.getElementById("see_report").style.display = "block";
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(
+        function() {
+            
+            var a =12;
+            var b =28;
+            var c =43;
+            var d =25;
+            var e =91;
+
+        var data = google.visualization.arrayToDataTable([
+          ['Center', 'Total Items'],
+          ['Bangalore',    a],
+          ['Delhi',      b],
+          ['Chennai',  c],
+          ['Kochi', d],
+          ['Mysore',    e]
+        ]);
+
+        var options = {
+          title: 'Asset Details',
+          is3D: true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('see_report'));
+         chart.draw(data, options);
+            
+        /*// orgChart is my global orgchart chart variable.
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+            // Notice that e is not used or needed.
+            function selectHandler(e) {
+                alert('The user selected' + chart.getSelection().length + ' items.');
+      }*/
+        }
+      ); 
+    }else{
+        document.getElementById("see_report").style.display = "none";
+    }
+        
+        // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(selectedTab).style.display = "block";
+  //  evt.currentTarget.className += " active";
+        
+    
+}
     
     
+<<<<<<< HEAD
+=======
    
   }
     
@@ -284,6 +371,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
  
+>>>>>>> fb223c7af59a9b87675e84098a6b2585c4e33e28
  
       $rootScope.$on("CallParentMethod", function(barcodeData){
            $scope.getCall(barcodeData);

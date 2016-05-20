@@ -42,7 +42,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
     views: {
       'menuContent': {
         templateUrl: 'templates/files/supplier.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
       }
     }
   })
@@ -51,7 +51,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
     views: {
       'menuContent': {
         templateUrl: 'templates/files/donorList.html',
-        controller: 'ResultsCtrl'
+        controller: 'AppCtrl'
+      }
+    }
+  })
+  .state('app.movementDetail', {
+    url: '/movementDetail/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/movementDetails.html',
+        controller: 'AppCtrl'
       }
     }
   })
