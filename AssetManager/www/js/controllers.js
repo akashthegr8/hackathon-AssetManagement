@@ -154,7 +154,61 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     
    
   }
+    $scope.donorList = [{
+        'id':10001,
+        'name': 'Akash'
+    },{
+        'id':10002,
+        'name': 'Abhishek'
+    }];
+    $scope.listDonors = function(){
+        
+      console.log("hey")
+      $state.go("app.donorList")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
  
+    $scope.listSupplier = function(){
+        $http.get("http://10.207.112.134:8080/assetManagement/assets/manageDonor")
+            .success(function(list) {
+               console.log("Data! " + list);
+            $scope.supplierList = JSON.parse(JSON.stringify(list));
+            console.log(JSON.stringify($scope.supplierList));
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+    
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.supplier")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+$scope.movementDetails = function(id){
+        $http.get("http://10.207.112.134:8080/assetManagement/assets/manageDonor")
+            .success(function(movDetail) {
+               console.log("Data! " + movDetail);
+            $scope.movement = JSON.parse(JSON.stringify(movDetail));
+            console.log(JSON.stringify($scope.movement));
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+    
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.movementDetail")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
      
 })
 

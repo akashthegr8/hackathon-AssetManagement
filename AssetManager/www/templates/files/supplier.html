@@ -9,9 +9,9 @@
             <button id="btdel" class="button icon icon-center ion-trash-a button-positive"></button>
         </div>
         <ion-list>
-            <ion-item ng-repeat="supplier in supplierList" track by $index>
+            <div ng-repeat="supplier in supplierList">
                 <b>{{supplier.id}}  {{supplier.name}}</b>
-            </ion-item>
+            </div>
         </ion-list>
     </ion-content>
 </ion-view>
