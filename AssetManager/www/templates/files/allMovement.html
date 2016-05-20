@@ -1,34 +1,50 @@
-<ion-view view-title="">
-    <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-hide="!ASSETMANAGER_RESULTS" ng-click="clearSearch()">Clear</button>
-    </ion-nav-buttons>
-    <ion-content class="padding">
-        <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
-            <div class="item item-avatar">
-                <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALIAAAAJGY4NzI5NDhiLTQzM2YtNDE4OS04MDdiLTg1N2I5Y2U1ZTMyNQ.jpg">
-                <h2>Akash Srivastava</h2>
-                <p>
-                    <a href="mailto:akash.srivastava01@sap.com.com" class="subdued"><i class="ion-email"></i></a>
-                    <a href="http://www.facebook.com/akashthegr8" class="subdued" >@akashthegr8</a>
-                </p>
+    <ion-view view-title="All asset movements">
+        <ion-nav-buttons side="right">
+            <button class="button button-clear" ng-hide="!ASSETMANAGER_RESULTS" ng-click="clearSearch()">Clear</button>
+        </ion-nav-buttons>
+        <ion-header-bar class="bar-stable">
+            <h1 class="title">All Asset movements</h1>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
+                <div class = "text-right">
+                    <button id="btadd" class="button icon icon-center ion-plus-round button-positive" ng-click="launchNewMove()"></button>
+                    <button id="btedit" class="button icon icon-center ion-edit button-positive"></button>
+                    <button id="btdel" class="button icon icon-center ion-trash-a button-positive"></button>                  
+                </div>
+                <div class="list">
+                    <label class="item item-input item-select">
+                    <div class="input-label">
+                       <b>Show movement with status:</b>
+                    </div>                      
+                         <select ng-model="mySelect.selected" ng-change="allMovement()" >
+                             <option selected>Any</option>
+                             <option><b>shipped</b></option>
+                             <option><b>in transit</b></option>
+                             <option><b>Received</b></option>
+                        </select>          
+                         </label>
+                </div>
+                <div class="item item-body">                    
+                    <div class="row header">
+                    <div class="col"><b>Movement ID</b></div>
+                    <div class="col"><b>Movement Date</b></div>
+                    <div class="col"><b>Movement Status</b></div>             
+                    </div>
+
+                    <div class="row" ng-repeat="data in data11">
+                    <div class="col">{{data.id}}</div>
+                    <div class="col">{{data.date}}</div>
+                    <div class="col">{{data.status}}</div>                   
+                    </div>
+                </div>
             </div>
-            <div class="item item-body">
-                <p><b>Service/Factory: </b></p>
-                <p>There is a single service that handles the connection to OMDB and the DOM. Uses promises ($q) to handle Asynchronous calls to API.</p>
-                <p><b>Controllers:</b></p>
-                <p>These are pretty straight forward and handle most of the logic. There is a Highcharts Config setup in the DetailsCtrl that works with highcharts-ng and the directive in the DOM. </p>
-                <p><b>App.js:</b></p>
-                <p>One parent route with child routes for individual sections etc. </p>
-                <p><b>Protractor.js:</b></p>
-                <p>For unit testing and e2e testing</p>
-            </div>
-        </div>
-        <ion-list ng-hide="!ASSETMANAGER_RESULTS">
-            <a class="item item-thumbnail-left" ng-repeat="item in OMDB_RESULTS" href="#/app/details/{{item.imdbID}}">
-                <img ng-src="{{item.Poster}}">
-                <h2>{{item.Title}}</h2>
-                <p>{{item.Year}}</p>
-            </a>
-        </ion-list>
-    </ion-content>
-</ion-view>
+            <ion-list ng-hide="!ASSETMANAGER_RESULTS">
+                <a class="item item-thumbnail-left" ng-repeat="item in OMDB_RESULTS" href="#/app/details/{{item.imdbID}}">
+                    <img ng-src="{{item.Poster}}">
+                    <h2>{{item.Title}}</h2>
+                    <p>{{item.Year}}</p>
+                </a>
+            </ion-list>
+        </ion-content>
+    </ion-view>

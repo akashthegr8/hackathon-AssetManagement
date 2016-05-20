@@ -42,6 +42,24 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
       }
     }
   })
+  .state('app.supplier', {
+    url: '/supplier',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/supplier.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+  .state('app.donorList', {
+    url: '/donorList',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/donorList.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
   .state('app.addDonor', {
     url: '/addDonor',
     views: {
@@ -100,6 +118,37 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
     views: {
       'menuContent': {
         templateUrl: 'templates/files/checkAssets.html',
+        controller: 'AppCtrl'
+      }
+    }
+  })
+  
+    /// child route
+  .state('app.BranchSel', {
+    url: '/BranchSel',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/BranchSel.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+  
+    .state('app.CityAssets', {
+    url: '/CityAssets',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/CityAssets.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+  
+    .state('app.About', {
+    url: '/About',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/About.html',
         controller: 'AppCtrl'
       }
     }

@@ -3,29 +3,45 @@
         <button class="button button-clear" ng-hide="!ASSETMANAGER_RESULTS" ng-click="clearSearch()">Clear</button>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
-            <div class="item item-avatar">
-                <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALIAAAAJGY4NzI5NDhiLTQzM2YtNDE4OS04MDdiLTg1N2I5Y2U1ZTMyNQ.jpg">
-                <h2>Akash Srivastava</h2>
-                <p>
-                    <a href="mailto:akash.srivastava01@sap.com.com" class="subdued"><i class="ion-email"></i></a>
-                    <a href="http://www.facebook.com/akashthegr8" class="subdued" >@akashthegr8</a>
-                </p>
-            </div>
-            <div class="item item-body">
-                
-                <a href="http://www.facebook.com"
-                
-                <p><b>Service/Factory: </b></p>
-                <p>There is a single service that handles the connection to OMDB and the DOM. Uses promises ($q) to handle Asynchronous calls to API.</p>
-                <p><b>Controllers:</b></p>
-                <p>These are pretty straight forward and handle most of the logic. There is a Highcharts Config setup in the DetailsCtrl that works with highcharts-ng and the directive in the DOM. </p>
-                <p><b>App.js:</b></p>
-                <p>One parent route with child routes for individual sections etc. </p>
-                <p><b>Protractor.js:</b></p>
-                <p>For unit testing and e2e testing</p>
-            </div>
+
+                <div class="text-right">
+                    <img src="/img/logo.png" id="imglogo">    
+                    <p>                
+                    <a href="mailto:hope_foundation@hopeww.org" class="subdued"><i class="ion-email"></i></a>
+                    <a href="https://www.hopefoundation.org.in/index.php" class="subdued" ></a>
+                    </p></div> 
+
+        <div class="list card">
+              <div class="item item-text-wrap">
+               <em>Select any location to track assets</em>
+            </div>  
         </div>
+            <div class="row">
+                 
+                <div class="col">
+                    <figure>
+                    <a><img src="img/bangalore.jpg" alt='missing'
+                    ng-click="locSelected('Bangalore')">   
+                        </a>
+                    <figcaption>Bangalore</figcaption>    
+                    </figure>                    
+                   </div>
+                
+                <div class="col">
+                    <figure>
+                    <img src="img/hyderabad.jpg" alt='missing'>
+                    <figcaption>Hyderabad</figcaption>    
+                    </figure>
+                    </div>  
+                </div>
+            <div class="row">    
+                 <div class="col">
+                     <figure>
+                     <img src="img/delhi.jpg">
+                     <figcaption>Delhi</figcaption>    
+                     </figure>
+                         </div>
+           </div>        
         <ion-list ng-hide="!ASSETMANAGER_RESULTS">
             <a class="item item-thumbnail-left" ng-repeat="item in OMDB_RESULTS" href="#/app/details/{{item.imdbID}}">
                 <img ng-src="{{item.Poster}}">

@@ -4,6 +4,8 @@
     </ion-nav-buttons>
     <ion-content class="padding">
         <div class="list card" ng-hide="ASSETMANAGER_RESULTS">
+<<<<<<< HEAD
+=======
             <div class="item item-avatar">
                 <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALIAAAAJGY4NzI5NDhiLTQzM2YtNDE4OS04MDdiLTg1N2I5Y2U1ZTMyNQ.jpg">
                 <h2>New Asset Movement</h2>
@@ -11,6 +13,7 @@
             </div>
             
             
+>>>>>>> 76df91360fa843551eb63262691a6a5c50d35f95
             
             <div class="item item-body">
                 
@@ -18,7 +21,11 @@
                 <label class = "item item-input item-select">
                     <span class="input-label">Asset Origin Location : {{originlocation}}</span>
 	            </label>
+<<<<<<< HEAD
+                <label class="item item-input item-stacked- label">
+=======
                 <label class="item item-input item-stacked-label">
+>>>>>>> 76df91360fa843551eb63262691a6a5c50d35f95
                     <span class="input-label">Origin Location Address : {{originaddress}}</span>
                   
                    <!--ng-disabled="mySearch.id" ng-model="mySearch.title" ng-keyup="$event.keyCode == 13 && doSearch(mySearch)"-->
@@ -43,12 +50,18 @@
                 <button class="button icon icon-left ion-checkmark-round button-positive" ng-controller="HomeCtrl" ng-click="scan();">
                    Read QR-Code
                 </button>
+<<<<<<< HEAD
+-->
+                
+                
+=======
                 
 -->
 	<div style='background:red;display:table;margin:40% auto;padding:10px;color:white' ng-controller='HomeCtrl' ng-click='scan()'>
         Click Here to Scan
       </div>
 
+>>>>>>> 76df91360fa843551eb63262691a6a5c50d35f95
                 <!--
                 <label class = "item item-input item-select">
                     <span class="input-label">Movement Status</span>
@@ -121,16 +134,39 @@
 
             
                 
+<<<<<<< HEAD
+                <ion-content>
+                    <div class="col"><button class="button" ng-click="ctrl.add($index)">Add</button></div>
+                    <div class="col"><button class="button" ng-click="ctrl.delete($index)">Delete</button></div>
+                <div class="row header">
+                  <div class="col"></div>
+                  <div class="col">ID</div>
+                  <div class="col">Product Type</div>
+=======
                 
 
                     <div class="row header">
                   <!--<div class="col"></div>-->
                   <div class="col">ID</div>
                   <div class="col">ProductType</div>
+>>>>>>> fb223c7af59a9b87675e84098a6b2585c4e33e28
                   <div class="col">Quantity</div>
                   <div class="col">Cost</div>
                   <div class="col">Status</div>
                 </div>
+<<<<<<< HEAD
+                <div class="row" ng-repeat="data in ctrl.data">
+                  <div class="col">{{data.check}}</div>
+                  <div class="col">{{data.ID}}</div>
+                  <div class="col">{{data.ProductType}}</div>
+                  <div class="col">{{data.Quantity}}</div>
+                  <div class="col">{{data.Cost}}</div>
+                  <div class="col">{{data.Status}}</div>
+                  
+                    
+                </div>
+                </ion-content>
+=======
                   <div class="row" ng-repeat="dataValue in $scope.ctrl">
                   <!--<div class="col">{{dataValue.check}}</div>-->
                   <div class="col">{{dataValue.ID}}</div>
@@ -148,6 +184,7 @@
                 
                 
                
+>>>>>>> fb223c7af59a9b87675e84098a6b2585c4e33e28
             </div>
         </div>
         <ion-list ng-hide="!ASSETMANAGER_RESULTS">

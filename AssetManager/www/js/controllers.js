@@ -1,12 +1,15 @@
 angular.module('starter.controllers', ['ionic','ngCordova'])
 
+
+
 .controller('AppCtrl',function($scope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
     
+
 
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
  // $rootScope.userSettings = {}; // store global user settings
-  
+  $scope.imag="";
   /// Core Search Function
     $scope.equipment = {
    /*     'vendor':"",
@@ -16,10 +19,17 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         'acquisition':""
    */ }
      $scope.createEquip = function(){
+         
+         $scope.qr="";
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
-         $http.post('/assetmanagement/', payload).then(function(result){
-    return result.data;
+         $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+             
+             console.log(result)
+            $scope.qr= 'data:image/png;base64,' + result.data; 
+             
+        
+                console.log($scope.qr);
 });
          
     }
@@ -44,6 +54,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       $state.go("app.addDonor")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+     
+     
   }
  
  
@@ -115,9 +127,91 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  } 
+  $scope.launchNewMove = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      
+      $state.go("app.createMovement")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
-
+  
+  $scope.movFilterSelVal = function(mySelect){
+      console.log("temp" + mySelect);
+  }
+  
+    $scope.ruMovement = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.ruMovement")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+    
+     $scope.BranchSel = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.BranchSel")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+     
+  $scope.mySelect = {
+      'selected': 'Any'
+  }
+  
+  $scope.locSelected= function(city){
+      $scope.myCity={
+          'selected': city
+      }
+      console.log("mycity "+  $scope.myCity.selected)
+      $state.go("app.BranchSel")
+  }
+  
+    $scope.launchcityassets= function(){
+      
+      $state.go("app.CityAssets")
+  }
+    
+  
+ $scope.myCity = {
+      'selected': 'Bangalore'
+  };
+    
   $scope.allMovement = function(){
+    
+      $state.go("app.allMovement")
+          if($scope.mySelect.selected == 'Any'){              $http.get("/assetManagement/assets/manageMovement")
+            .success(function(allMovList) {
+              console.log("Any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          }else{              $http.get("/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
+            .success(function(allMovList) {
+              console.log("not any " + $scope.mySelect.selected);
+              console.log("not any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          } 
+            
+  }
+  
+  $scope.CityAssets = function(){
     
     $ionicLoading.show({
           template: "Loading data..."
@@ -127,6 +221,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
+  
   
     $scope.checkAssets = function(){
         
@@ -147,12 +242,87 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       console.log("hey")
       $state.go("app.checkAssets")
        $ionicLoading.hide();
-    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu 
+  }
+ // A.Kumar
+    $scope.openCity = function (evt, selectedTab) {           
+       
         
-           
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tabcontent.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
     
+        
+    if(selectedTab == "see_report"){
+        document.getElementById("see_report").style.display = "block";
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(
+        function() {
+            
+            var a =12;
+            var b =28;
+            var c =43;
+            var d =25;
+            var e =91;
+
+        var data = google.visualization.arrayToDataTable([
+          ['Center', 'Total Items'],
+          ['Bangalore',    a],
+          ['Delhi',      b],
+          ['Chennai',  c],
+          ['Kochi', d],
+          ['Mysore',    e]
+        ]);
+
+        var options = {
+          title: 'Asset Details',
+          is3D: true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('see_report'));
+         chart.draw(data, options);
+            
+        /*// orgChart is my global orgchart chart variable.
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+            // Notice that e is not used or needed.
+            function selectHandler(e) {
+                alert('The user selected' + chart.getSelection().length + ' items.');
+      }*/
+        }
+      ); 
+    }else{
+        document.getElementById("see_report").style.display = "none";
+    }
+        
+        // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(selectedTab).style.display = "block";
+  //  evt.currentTarget.className += " active";
+        
     
-   
+}
+    
+
+     $scope.About = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.About")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
     $scope.donorList = [{
         'id':10001,
@@ -231,7 +401,7 @@ $scope.movementDetails = function(id){
 
 }]);
 
-/*.controller('ResultsCtrl', function($scope) {
+/*.controller('AppCtrl', function($scope) {
     
   
     $scope.createEquip = function(){
