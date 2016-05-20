@@ -2,7 +2,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 
 
 
-.controller('AppCtrl',function($scope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
+.controller('AppCtrl',function($scope, $rootScope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
     
 
 
@@ -20,19 +20,49 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
    */ }
      $scope.createEquip = function(){
          
+        /* $http.get("/assetManagement/assets/manageEquipment/").success(function(result){
+            console.log("raw" + result.data)
+             abc = btoa(result.data); 
+             console.log("btoa" + abc);
+         });*/
+         
          $scope.qr="";
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
          $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
              
              console.log(result)
-            $scope.qr= 'data:image/png;base64,' + result.data; 
+            $rootScope.qr= result.data; 
              
         
-                console.log($scope.qr);
+                console.log($rootScope.qr);
+              
+               var alertPopup = $ionicPopup.alert({
+                 title: 'Asset Saved',
+                 template: 'Clicke OK to show the generated QR Code'
+               });
+
+               alertPopup.then(function(res) {
+                $state.go("app.showQR"); 
+                 
+               });
+             
+             
+            
 });
          
     }
+     
+  /*   $scope.showQR = function(qr){
+         
+         $scope.qr=qr;
+         $
+     }*/
+     
+     
+     
+     
+     
  
     
   $scope.addEquip = function(){
@@ -263,7 +293,9 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       console.log("safdsg")
     $ionicPlatform.ready(function() {
       $cordovaBarcodeScanner.scan().then(function(barcodeData) {
-          alert(JSON.stringify(barcodeData));
+          $http.get("/assetManagement/assets/manageEquipment/"+barcode.text).success(function(result){
+              console.log(result.data)
+          });
       }, function(error) {
           alert(JSON.stringify(error));
       });

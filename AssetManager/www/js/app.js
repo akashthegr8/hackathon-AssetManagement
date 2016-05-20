@@ -64,6 +64,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers','starter.
       }
     }
   })
+  .state('app.showQR', {
+    url: '/showQR',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/files/showQR.html',
+        controller: 'AppCtrl'
+      }
+    }
+  })
   .state('app.addSupplier', {
     url: '/addSupplier',
     views: {
