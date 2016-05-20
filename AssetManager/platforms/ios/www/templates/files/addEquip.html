@@ -14,7 +14,7 @@
                 
                 <label class = "item item-input item-select">
                     <span class="input-label" >Product Type</span>
-	                <select ng-model="equipment.type">
+	                <select ng-model="equipment.product_type">
                       <option>WebCam</option>
                       <option selected>Laptop</option>
                       <option>Printer</option>
@@ -22,12 +22,14 @@
                       <option>Monitor</option>
                       <option>CPU</option>
                       <option>Projector</option>
+                      <option>Mobile</option>
+                      <option>Tavlet</option>
                   </select>
                 </label>
                 
                 <label class = "item item-input item-select">
                     <span class="input-label" >Vendor</span>
-	                <select ng-model="equipment.vendor">
+	                <select ng-model="equipment.product_vendor">
                       <option value="Lenovo">Lenovo</option>
                       <option selected>HP</option>
                       <option>Panasonic</option>
@@ -38,7 +40,7 @@
                 
                 <label class = "item item-input item-select">
                     <span class="input-label" >Location</span>
-	                <select ng-model="equipment.location">
+	                <select ng-model="equipment.product_location">
                       <option>Bangalore-North</option>
                       <option selected>Bangalore-East</option>
                       <option name="South">Bangalore-South</option>
@@ -50,16 +52,18 @@
                 </label>
                 
                 
+                
+                
                 <label class = "item item-input ">
-                    <ion-radio ng-model="equipment.acquisition" ng-value="'Purchased'">Purchased</ion-radio>
-                    <ion-radio ng-model="equipment.acquisition" ng-value="'Donated'">Donated</ion-radio>
+                    <ion-radio ng-model="equipment.product_acquisition" ng-value="'Purchased'">Purchased</ion-radio>
+                    <ion-radio ng-model="equipment.product_acquisition" ng-value="'Donated'">Donated</ion-radio>
                 </label>
                 
-                <div ng-if="equipment.acquisition == 'Donated'">
+                <div ng-if="equipment.product_acquisition == 'Donated'">
                 
                 <label class = "item item-input item-select">
                     <span class="input-label" >Donor</span>
-	                <select  ng-model="equipment.donor">
+	                <select  ng-model="equipment.product_donor">
                       <option>SAP</option>
                       <option selected>Samajik Suvidha Sangam</option>
                       <option>ONGC</option>
@@ -67,15 +71,15 @@
                     </select>
                 </label></div>
                 
-                <div ng-if="equipment.acquisition == 'Purchased'">
+                <div ng-if="equipment.product_acquisition == 'Purchased'">
                 
                 <label class = "item item-input item-select">
                      <span class="input-label" >Cost</span>
-                    <input  ng-model="equipment.cost" type="text" >
+                    <input  ng-model="equipment.product_cost" type="text" >
                 </label></div>
                 
                 
-                <button class="button icon icon-left ion-checkmark-round button-positive" ng-click="createEquip();">
+                <button class="button icon icon-left ion-checkmark-round button-positive" ng-click="createEquip();")>
                    Save
                 </button>
                 

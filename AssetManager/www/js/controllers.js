@@ -29,15 +29,17 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
          $scope.qr="";
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
-         $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+         $http.post('http://10.207.112.134:8080/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
              
              console.log(result)
             $rootScope.qr= result.data; 
              
         
                 console.log($rootScope.qr);
+             
+             $state.go("app.showQR")
               
-               var alertPopup = $ionicPopup.alert({
+              /* var alertPopup = $ionicPopup.alert({
                  title: 'Asset Saved',
                  template: 'Clicke OK to show the generated QR Code'
                });
@@ -45,7 +47,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
                alertPopup.then(function(res) {
                 $state.go("app.showQR"); 
                  
-               });
+               });*/
              
              
             
@@ -220,7 +222,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   $scope.allMovement = function(){
     
       $state.go("app.allMovement")
-          if($scope.mySelect.selected == 'Any'){              $http.get("/assetManagement/assets/manageMovement")
+          if($scope.mySelect.selected == 'Any'){              $http.get("http://10.207.112.134:8080/assetManagement/assets/manageMovement")
             .success(function(allMovList) {
               console.log("Any " + allMovList);
             $scope.data11 = allMovList;
@@ -228,7 +230,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
             .error(function(data) {
                 alert("ERROR");
             });
-          }else{              $http.get("/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
+          }else{              $http.get("http://10.207.112.134:8080/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
             .success(function(allMovList) {
               console.log("not any " + $scope.mySelect.selected);
               console.log("not any " + allMovList);
@@ -293,7 +295,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       console.log("safdsg")
     $ionicPlatform.ready(function() {
       $cordovaBarcodeScanner.scan().then(function(barcodeData) {
-          $http.get("/assetManagement/assets/manageEquipment/"+barcode.text).success(function(result){
+          $http.get("http://10.207.112.134:8080/assetManagement/assets/manageEquipment/"+barcode.text).success(function(result){
               console.log(result.data)
           });
       }, function(error) {

@@ -29,15 +29,17 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
          $scope.qr="";
     payload = JSON.stringify($scope.equipment);
         console.log(payload);
-         $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+         $http.post('http://10.207.112.134:8080/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
              
              console.log(result)
             $rootScope.qr= result.data; 
              
         
                 console.log($rootScope.qr);
+             
+             $state.go("app.showQR")
               
-               var alertPopup = $ionicPopup.alert({
+              /* var alertPopup = $ionicPopup.alert({
                  title: 'Asset Saved',
                  template: 'Clicke OK to show the generated QR Code'
                });
@@ -45,7 +47,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
                alertPopup.then(function(res) {
                 $state.go("app.showQR"); 
                  
-               });
+               });*/
              
              
             

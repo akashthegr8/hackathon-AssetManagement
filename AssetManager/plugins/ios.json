@@ -9,6 +9,9 @@
     "installed_plugins": {
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.omdbapi.app"
         }
     },
     "dependent_plugins": {}

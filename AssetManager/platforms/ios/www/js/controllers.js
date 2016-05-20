@@ -1,11 +1,15 @@
 angular.module('starter.controllers', ['ionic','ngCordova'])
 
-.controller('AppCtrl',function($scope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
+
+
+.controller('AppCtrl',function($scope, $rootScope,$cordovaBarcodeScanner,$ionicPlatform,$assetmanagerservice,$state, $rootScope, $ionicPopup, $ionicSideMenuDelegate, $ionicLoading, $timeout, $http) {
     
+
+
   ////////// SEARCH CONTROLLER BELOW ////////////
   $scope.mySearch = {}; // create empty object for search params
  // $rootScope.userSettings = {}; // store global user settings
-  
+  $scope.imag="";
   /// Core Search Function
     $scope.equipment = {
    /*     'vendor':"",
@@ -15,12 +19,54 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         'acquisition':""
    */ }
      $scope.createEquip = function(){
-    
-        console.log(JSON.stringify($scope.equipment));
+         
+        /* $http.get("/assetManagement/assets/manageEquipment/").success(function(result){
+            console.log("raw" + result.data)
+             abc = btoa(result.data); 
+             console.log("btoa" + abc);
+         });*/
+         
+         $scope.qr="";
+    payload = JSON.stringify($scope.equipment);
+        console.log(payload);
+         $http.post('/assetManagement/assets/manageEquipment/addEquipment', payload).then(function(result){
+             
+             console.log(result)
+            $rootScope.qr= result.data; 
+             
+        
+                console.log($rootScope.qr);
+             
+             $state.go("app.showQR")
+              
+              /* var alertPopup = $ionicPopup.alert({
+                 title: 'Asset Saved',
+                 template: 'Clicke OK to show the generated QR Code'
+               });
+
+               alertPopup.then(function(res) {
+                $state.go("app.showQR"); 
+                 
+               });*/
+             
+             
+            
+});
          
     }
- 
      
+  /*   $scope.showQR = function(qr){
+         
+         $scope.qr=qr;
+         $
+     }*/
+     
+     
+     
+     
+     
+ 
+    
   $scope.addEquip = function(){
     $ionicLoading.show({
           template: "Loading data..."
@@ -40,6 +86,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       $state.go("app.addDonor")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+     
+     
   }
  
  
@@ -111,17 +159,88 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  } 
+  $scope.launchNewMove = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      
+      $state.go("app.createMovement")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
   }
-
-  $scope.allMovement = function(){
+  
+  $scope.movFilterSelVal = function(mySelect){
+      console.log("temp" + mySelect);
+  }
+  
+    $scope.ruMovement = function(){
     
     $ionicLoading.show({
           template: "Loading data..."
       })
       console.log("hey")
-      $state.go("app.allMovement")
+      $state.go("app.ruMovement")
        $ionicLoading.hide();
     $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+    
+     $scope.BranchSel = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.BranchSel")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+     
+  $scope.mySelect = {
+      'selected': 'Any'
+  }
+  
+  $scope.locSelected= function(city){
+      $scope.myCity={
+          'selected': city
+      }
+      console.log("mycity "+  $scope.myCity.selected)
+      $state.go("app.BranchSel")
+  }
+  
+    $scope.launchcityassets= function(){
+      
+      $state.go("app.CityAssets")
+  }
+    
+  
+ $scope.myCity = {
+      'selected': 'Bangalore'
+  };
+    
+  $scope.allMovement = function(){
+    
+      $state.go("app.allMovement")
+          if($scope.mySelect.selected == 'Any'){              $http.get("/assetManagement/assets/manageMovement")
+            .success(function(allMovList) {
+              console.log("Any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          }else{              $http.get("/assetManagement/assets/manageMovement/byStatus/"+$scope.mySelect.selected)
+            .success(function(allMovList) {
+              console.log("not any " + $scope.mySelect.selected);
+              console.log("not any " + allMovList);
+            $scope.data11 = allMovList;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+          } 
+            
   }
   
     $scope.checkAssets = function(){
@@ -150,33 +269,44 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     
    
   }
+    
+     $scope.About = function(){
+    
+    $ionicLoading.show({
+          template: "Loading data..."
+      })
+      console.log("hey")
+      $state.go("app.About")
+       $ionicLoading.hide();
+    $ionicSideMenuDelegate.isOpen() ? $ionicSideMenuDelegate.toggleLeft() : null; /// close side menu
+  }
+ 
  
      
 })
-.controller('HomeController', function($scope, $rootScope, $cordovaBarcodeScanner, $ionicPlatform) {
-    var vm = this;
 
-    vm.scan = function(){
-        $ionicPlatform.ready(function() {
-            $cordovaBarcodeScanner
-            .scan()
-            .then(function(result) {
-                // Success! Barcode data is here
-                vm.scanResults = "We got a barcoden" +
-                "Result: " + result.text + "n" +
-                "Format: " + result.format + "n" +
-                "Cancelled: " + result.cancelled;
-            }, function(error) {
-                // An error occurred
-                vm.scanResults = 'Error: ' + error;
-            });
-        });
-    };
-    
-    vm.scanResults = '';
-});
 
-/*.controller('ResultsCtrl', function($scope) {
+
+
+.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$cordovaBarcodeScanner,$ionicPlatform) {
+
+  $scope.scan = function(){
+      
+      console.log("safdsg")
+    $ionicPlatform.ready(function() {
+      $cordovaBarcodeScanner.scan().then(function(barcodeData) {
+          $http.get("/assetManagement/assets/manageEquipment/"+barcode.text).success(function(result){
+              console.log(result.data)
+          });
+      }, function(error) {
+          alert(JSON.stringify(error));
+      });
+    });
+  }
+
+}]);
+
+/*.controller('AppCtrl', function($scope) {
     
   
     $scope.createEquip = function(){
@@ -185,3 +315,4 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         console.log(vr  + "hoooo")
     }
 });*/
+

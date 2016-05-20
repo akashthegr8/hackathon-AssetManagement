@@ -48,8 +48,10 @@
     <author email="colemanjeff@mac.com" href="http://www.colemanjeff.com/">
       akash.srivastava01@sap.com
     </author>
-    <content src="index.html" />
+    <allow-navigation href="*" />
+    <access origin="*" subdomains="true" />
     <access origin="*" />
+    <content src="index.html" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

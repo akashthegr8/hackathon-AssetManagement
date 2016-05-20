@@ -26,4 +26,4 @@ angular.module('starter.services', [])
             return deferred.promise; // return promise to requesting controller to wait for asyn response from this service
         }
     }
-}])
+}]);

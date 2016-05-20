@@ -13,6 +13,8 @@
     <author email="colemanjeff@mac.com" href="http://www.colemanjeff.com/">
       akash.srivastava01@sap.com
     </author>
+    <allow-navigation href="*" />
+    <access origin="*" subdomains="true" />
     <content src="index.html" />
     <access origin="*" />
     <preference name="AllowInlineMediaPlayback" value="false" />

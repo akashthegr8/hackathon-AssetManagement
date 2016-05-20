@@ -26,20 +26,4 @@ angular.module('starter.services', [])
             return deferred.promise; // return promise to requesting controller to wait for asyn response from this service
         }
     }
-}])
-
-.factory('myService', function() {
- var savedData = "";
- function set(data) {
-   savedData = data;
- }
- function get() {
-  return savedData;
- }
-
- return {
-  set: set,
-  get: get
- }
-
-});
+}]);
